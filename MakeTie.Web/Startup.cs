@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using AutoMapper;
 using Google.Cloud.Language.V1;
 using MakeTie.Bll.Interfaces;
@@ -12,6 +13,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace MakeTie.Web
 {
@@ -37,8 +40,10 @@ namespace MakeTie.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            ConfigureLogging(env, loggerFactory);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -47,8 +52,20 @@ namespace MakeTie.Web
             app.UseMvc();
         }
 
+        private void ConfigureLogging(IHostingEnvironment env, ILoggerFactory loggerFactory)
+        {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.RollingFile(Path.Combine(env.ContentRootPath, "Logs", "log-{Date}.txt"))
+                .CreateLogger();
+
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddSerilog();
+        }
+
         private void RegisterDependencies(IServiceCollection services)
         {
+            services.AddTransient(provider => Log.Logger);
             RegisterConfiguration(services);
             RegisterMapping(services);
             RegisterServices(services);

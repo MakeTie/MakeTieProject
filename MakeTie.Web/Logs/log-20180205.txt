@@ -1,0 +1,136 @@
+2018-02-05 17:13:47.037 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:61810/api/recommendation?query=buy%20a%20new%20blue%20car  
+2018-02-05 17:13:47.773 +02:00 [Information] Executing action method "MakeTie.Web.Controllers.RecommendationController.Get (MakeTie.Web)" with arguments (["buy a new blue car"]) - ModelState is Valid
+2018-02-05 17:14:14.018 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2018-02-05 17:14:14.096 +02:00 [Information] Executed action "MakeTie.Web.Controllers.RecommendationController.Get (MakeTie.Web)" in 26825.562ms
+2018-02-05 17:17:46.485 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:61810/api/recommendation?query=buy%20a%20new%20blue%20car  
+2018-02-05 17:17:47.062 +02:00 [Information] Executing action method "MakeTie.Web.Controllers.RecommendationController.Get (MakeTie.Web)" with arguments (["buy a new blue car"]) - ModelState is Valid
+2018-02-05 17:17:51.138 +02:00 [Information] Executed action "MakeTie.Web.Controllers.RecommendationController.Get (MakeTie.Web)" in 4428.474ms
+2018-02-05 17:17:51.276 +02:00 [Error] An unhandled exception has occurred while executing the request
+System.AggregateException: One or more errors occurred. (Cannot get response from the eBay API service) ---> MakeTie.Bll.Exceptions.ProductServiceException: Cannot get response from the eBay API service ---> System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Unauthorized).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at MakeTie.Bll.Utils.HttpUtil.<GetAsync>d__2.MoveNext() in D:\University\Diploma\MakeTieRepository\MakeTie.Bll\Utils\HttpUtil.cs:line 26
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at MakeTie.Bll.ProductProviders.EBayProductProvider.<GetProductsAsync>d__4.MoveNext() in D:\University\Diploma\MakeTieRepository\MakeTie.Bll\ProductProviders\EBayProductProvider.cs:line 33
+   --- End of inner exception stack trace ---
+   at MakeTie.Bll.ProductProviders.EBayProductProvider.<GetProductsAsync>d__4.MoveNext() in D:\University\Diploma\MakeTieRepository\MakeTie.Bll\ProductProviders\EBayProductProvider.cs:line 38
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at MakeTie.Bll.Services.ProductService.SearchProducts(String query) in D:\University\Diploma\MakeTieRepository\MakeTie.Bll\Services\ProductService.cs:line 27
+   at MakeTie.Web.Controllers.RecommendationController.<Get>d__5.MoveNext() in D:\University\Diploma\MakeTieRepository\MakeTie.Web\Controllers\RecommendationController.cs:line 50
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeActionMethodAsync>d__12.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeNextActionFilterAsync>d__10.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+---> (Inner Exception #0) MakeTie.Bll.Exceptions.ProductServiceException: Cannot get response from the eBay API service ---> System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Unauthorized).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at MakeTie.Bll.Utils.HttpUtil.<GetAsync>d__2.MoveNext() in D:\University\Diploma\MakeTieRepository\MakeTie.Bll\Utils\HttpUtil.cs:line 26
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at MakeTie.Bll.ProductProviders.EBayProductProvider.<GetProductsAsync>d__4.MoveNext() in D:\University\Diploma\MakeTieRepository\MakeTie.Bll\ProductProviders\EBayProductProvider.cs:line 33
+   --- End of inner exception stack trace ---
+   at MakeTie.Bll.ProductProviders.EBayProductProvider.<GetProductsAsync>d__4.MoveNext() in D:\University\Diploma\MakeTieRepository\MakeTie.Bll\ProductProviders\EBayProductProvider.cs:line 38<---
+
+2018-02-05 18:16:44.655 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:61809/api/recommendation?query=buy%20a%20new%20blue%20car  
+2018-02-05 18:16:45.179 +02:00 [Information] Executing action method "MakeTie.Web.Controllers.RecommendationController.Get (MakeTie.Web)" with arguments (["buy a new blue car"]) - ModelState is Valid
+2018-02-05 18:16:48.958 +02:00 [Information] Executed action "MakeTie.Web.Controllers.RecommendationController.Get (MakeTie.Web)" in 4092.3353ms
+2018-02-05 18:16:49.060 +02:00 [Error] An unhandled exception has occurred while executing the request
+System.AggregateException: One or more errors occurred. (Cannot get response from the eBay API service) ---> MakeTie.Bll.Exceptions.ProductServiceException: Cannot get response from the eBay API service ---> System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Unauthorized).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at MakeTie.Bll.Utils.HttpUtil.<GetAsync>d__2.MoveNext() in D:\Diploma\Project\MakeTie.Bll\Utils\HttpUtil.cs:line 26
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at MakeTie.Bll.ProductProviders.EBayProductProvider.<GetProductsAsync>d__4.MoveNext() in D:\Diploma\Project\MakeTie.Bll\ProductProviders\EBayProductProvider.cs:line 33
+   --- End of inner exception stack trace ---
+   at MakeTie.Bll.ProductProviders.EBayProductProvider.<GetProductsAsync>d__4.MoveNext() in D:\Diploma\Project\MakeTie.Bll\ProductProviders\EBayProductProvider.cs:line 38
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at MakeTie.Bll.Services.ProductService.SearchProducts(String query) in D:\Diploma\Project\MakeTie.Bll\Services\ProductService.cs:line 27
+   at MakeTie.Web.Controllers.RecommendationController.<Get>d__6.MoveNext() in D:\Diploma\Project\MakeTie.Web\Controllers\RecommendationController.cs:line 50
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeActionMethodAsync>d__12.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeNextActionFilterAsync>d__10.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+---> (Inner Exception #0) MakeTie.Bll.Exceptions.ProductServiceException: Cannot get response from the eBay API service ---> System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Unauthorized).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at MakeTie.Bll.Utils.HttpUtil.<GetAsync>d__2.MoveNext() in D:\Diploma\Project\MakeTie.Bll\Utils\HttpUtil.cs:line 26
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at MakeTie.Bll.ProductProviders.EBayProductProvider.<GetProductsAsync>d__4.MoveNext() in D:\Diploma\Project\MakeTie.Bll\ProductProviders\EBayProductProvider.cs:line 33
+   --- End of inner exception stack trace ---
+   at MakeTie.Bll.ProductProviders.EBayProductProvider.<GetProductsAsync>d__4.MoveNext() in D:\Diploma\Project\MakeTie.Bll\ProductProviders\EBayProductProvider.cs:line 38<---
+
+2018-02-05 18:17:43.954 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:61809/api/recommendation?query=buy%20a%20new%20blue%20car  
+2018-02-05 18:17:44.465 +02:00 [Information] Executing action method "MakeTie.Web.Controllers.RecommendationController.Get (MakeTie.Web)" with arguments (["buy a new blue car"]) - ModelState is Valid
+2018-02-05 18:17:50.479 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2018-02-05 18:17:50.531 +02:00 [Information] Executed action "MakeTie.Web.Controllers.RecommendationController.Get (MakeTie.Web)" in 6365.7641ms
