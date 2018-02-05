@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using MakeTie.Bll.Entities.Product;
 using MakeTie.Bll.Entities.Product.EBay;
 using MakeTie.Bll.Exceptions;
@@ -15,11 +15,13 @@ namespace MakeTie.Bll.ProductProviders
     {
         private readonly IHttpUtil _httpUtil;
         private readonly IEBaySettings _settings;
+        private readonly IMapper _mapper;
 
-        public EBayProductProvider(IHttpUtil httpUtil, IEBaySettings settings)
+        public EBayProductProvider(IHttpUtil httpUtil, IEBaySettings settings, IMapper mapper)
         {
             _httpUtil = httpUtil;
             _settings = settings;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<Product>> GetProductsAsync(string searchQuery)
@@ -37,24 +39,9 @@ namespace MakeTie.Bll.ProductProviders
             }
 
             var eBayItems = JsonConvert.DeserializeObject<ItemsSearchResponse>(responseString).ItemSummaries;
-            var products = MapEBayItemsToProducts(eBayItems ?? new List<EbayItem>());
+            var products = _mapper.Map<IEnumerable<Product>>(eBayItems);
 
-            return products;
-        }
-
-        private IEnumerable<Product> MapEBayItemsToProducts(IEnumerable<EbayItem> eBayItems)
-        {
-            var store = new Store {Name = _settings.StoreName, ImageUrl = _settings.StoreImageUrl };
-            var products = eBayItems.Select(item => new Product
-            {
-                Store = store,
-                ImageUrl = item.Image?.ImageUrl,
-                Price = new Price {Currency = item.Price.Currency, Value = item.Price.Value},
-                SourceUrl = item.ItemWebUrl,
-                Title = item.Title
-            });
-
-            return products;
+            return products ?? new List<Product>();
         }
     }
 }

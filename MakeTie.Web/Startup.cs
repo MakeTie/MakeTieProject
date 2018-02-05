@@ -1,4 +1,6 @@
-﻿using MakeTie.Bll.Interfaces;
+﻿using AutoMapper;
+using MakeTie.Bll.Interfaces;
+using MakeTie.Bll.Mapping.Profiles;
 using MakeTie.Bll.ProductProviders;
 using MakeTie.Bll.Services;
 using MakeTie.Bll.Utils;
@@ -41,15 +43,33 @@ namespace MakeTie.Web
 
         private void RegisterDependencies(IServiceCollection services)
         {
+            RegisterConfiguration(services);
+            RegisterMapping(services);
+            RegisterServices(services);
+        }
+
+        private void RegisterServices(IServiceCollection services)
+        {
+            services.AddTransient<IProductProvider, EBayProductProvider>();
+            services.AddTransient<IHttpUtil, HttpUtil>();
+            services.AddTransient<IAssociationService, AssociationsService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ISentimentService, StubSetimentService>();
+        }
+
+        private void RegisterMapping(IServiceCollection services)
+        {
+            services.AddSingleton(provider => new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new ProductProfile(provider.GetService<IEBaySettings>()));
+            }).CreateMapper());
+        }
+
+        private void RegisterConfiguration(IServiceCollection services)
+        {
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddTransient<IAssociationSettings, AssociationSettings>();
             services.AddTransient<IEBaySettings, EBaySettings>();
-
-            services.AddTransient<IHttpUtil, HttpUtil>();
-            services.AddTransient<ISentimentService, StubSetimentService>();
-            services.AddTransient<IAssociationService, AssociationsService>();
-            services.AddTransient<IProductProvider, EBayProductProvider>();
-            services.AddTransient<IProductService, ProductService>();
         }
     }
 }
