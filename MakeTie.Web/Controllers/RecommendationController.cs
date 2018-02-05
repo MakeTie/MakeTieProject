@@ -10,16 +10,17 @@ namespace MakeTie.Web.Controllers
     [Route("api/[controller]")]
     public class RecommendationController : Controller
     {
-        private readonly ISentimentService _sentimentService;
+        private const int MaxEntitiesCount = 3;
+        private readonly IEntityAnalysisService _entityAnalysisService;
         private readonly IAssociationService _associationService;
         private readonly IProductService _productService;
 
         public RecommendationController(
-            ISentimentService sentimentService,
+            IEntityAnalysisService entityAnalysisService,
             IAssociationService associationService,
             IProductService productService)
         {
-            _sentimentService = sentimentService;
+            _entityAnalysisService = entityAnalysisService;
             _associationService = associationService;
             _productService = productService;
         }
@@ -27,8 +28,9 @@ namespace MakeTie.Web.Controllers
         [HttpGet]
         public async Task<IEnumerable<Product>> Get(string query)
         {
-            var entities = _sentimentService.GetEntities(query);
-            var associations = await _associationService.GetAssociationsAsync(entities, 3);
+            var entities = await _entityAnalysisService.GetEntitiesAsync(query, MaxEntitiesCount);
+            var stringEntities = entities.Select(entity => entity.Name);
+            var associations = await _associationService.GetAssociationsAsync(stringEntities, MaxEntitiesCount);
             var products = new List<Product>();
 
             foreach (var association in associations)
@@ -37,7 +39,7 @@ namespace MakeTie.Web.Controllers
                 {
                     products.AddRange(_productService.SearchProducts(item.Item)
                         .Where(product => product.ImageUrl != null)
-                        .Take(3)
+                        .Take(MaxEntitiesCount)
                         .ToList());
                 }
             }

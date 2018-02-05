@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
+using Google.Cloud.Language.V1;
 using MakeTie.Bll.Interfaces;
 using MakeTie.Bll.Mapping.Profiles;
 using MakeTie.Bll.ProductProviders;
@@ -25,6 +27,10 @@ namespace MakeTie.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var environmentVariableName = Configuration["EntityAnalysisSettings:EnvironmentVariableName"];
+            var googleCredentialsPath = Configuration["EntityAnalysisSettings:GoogleCredentialsPath"];
+            Environment.SetEnvironmentVariable(environmentVariableName, googleCredentialsPath);
+
             services.AddMvc();
 
             RegisterDependencies(services);
@@ -54,7 +60,8 @@ namespace MakeTie.Web
             services.AddTransient<IHttpUtil, HttpUtil>();
             services.AddTransient<IAssociationService, AssociationsService>();
             services.AddTransient<IProductService, ProductService>();
-            services.AddTransient<ISentimentService, StubSetimentService>();
+            services.AddTransient<IEntityAnalysisService, EntityAnalysisService>();
+            services.AddSingleton(LanguageServiceClient.Create());
         }
 
         private void RegisterMapping(IServiceCollection services)
@@ -62,6 +69,7 @@ namespace MakeTie.Web
             services.AddSingleton(provider => new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new ProductProfile(provider.GetService<IEBaySettings>()));
+                cfg.AddProfile(new AnalysisProfile());
             }).CreateMapper());
         }
 
