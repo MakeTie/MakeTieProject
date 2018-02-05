@@ -56,7 +56,7 @@ namespace MakeTie.Web
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
-                .WriteTo.RollingFile(Path.Combine(env.ContentRootPath, "Logs", "log-{Date}.txt"))
+                .WriteTo.RollingFile(Path.Combine(env.ContentRootPath, "Logs", "log-{Date}.log"))
                 .CreateLogger();
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
