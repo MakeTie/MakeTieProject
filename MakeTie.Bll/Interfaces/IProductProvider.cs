@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AssociationsService.Entities.Product;
+using MakeTie.Bll.Entities.Product;
 
 namespace MakeTie.Bll.Interfaces
 {

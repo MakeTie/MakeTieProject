@@ -1,4 +1,4 @@
-﻿namespace AssociationsService.Entities.Association
+﻿namespace MakeTie.Bll.Entities.Association
 {
     public class AssociationItem
     {

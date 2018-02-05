@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AssociationsService.Entities.Association
+namespace MakeTie.Bll.Entities.Association
 {
     public class ResponseModel
     {

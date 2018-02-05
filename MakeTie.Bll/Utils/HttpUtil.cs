@@ -1,9 +1,9 @@
 ﻿using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using AssociationsService.Utils.Interfaces;
+using MakeTie.Bll.Utils.Interfaces;
 
-namespace AssociationsService.Utils
+namespace MakeTie.Bll.Utils
 {
     public class HttpUtil : IHttpUtil
     {

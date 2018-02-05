@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace AssociationsService.Utils.Interfaces
+namespace MakeTie.Bll.Utils.Interfaces
 {
     public interface IHttpUtil
     {

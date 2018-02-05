@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AssociationsService.Exceptions
+namespace MakeTie.Bll.Exceptions
 {
     public class AssociationServiceException : Exception
     {

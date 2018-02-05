@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AssociationsService.Entities.Product;
+using MakeTie.Bll.Entities.Product;
 using MakeTie.Bll.Interfaces;
 
-namespace AssociationsService.Services
+namespace MakeTie.Bll.Services
 {
     public class ProductService : IProductService
     {

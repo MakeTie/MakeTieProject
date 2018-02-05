@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using AssociationsService.Entities.Product;
+using MakeTie.Bll.Entities.Product;
 
 namespace MakeTie.Bll.Interfaces
 {

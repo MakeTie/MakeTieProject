@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AssociationsService.Entities.Product.EBay
+namespace MakeTie.Bll.Entities.Product.EBay
 {
     public class ItemsSearchResponse
     {

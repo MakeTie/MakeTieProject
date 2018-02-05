@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace AssociationsService.Entities.Product
+﻿namespace MakeTie.Bll.Entities.Product
 {
     public class Product
     {

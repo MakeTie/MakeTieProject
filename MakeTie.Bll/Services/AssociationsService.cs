@@ -2,25 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AssociationsService.Entities.Association;
-using AssociationsService.Exceptions;
-using AssociationsService.Utils.Interfaces;
+using MakeTie.Bll.Entities.Association;
+using MakeTie.Bll.Exceptions;
 using MakeTie.Bll.Interfaces;
+using MakeTie.Bll.Utils.Interfaces;
 using Newtonsoft.Json;
 
-namespace AssociationsService.Services
+namespace MakeTie.Bll.Services
 {
     public class AssociationsService : IAssociationService
     {
-        private const string ApiTemplate = 
-            "https://api.wordassociations.net/associations/v1.0/json/search?apikey={0}&text={1}&lang=en&limit={2}&pos=noun";
-        private const string ApiKey = "4e64996e-0d38-4ca6-8053-401e8d697d9c";
-
         private readonly IHttpUtil _httpUtil;
+        private readonly IAssociationSettings _settings;
 
-        public AssociationsService(IHttpUtil httpUtil)
+        public AssociationsService(IHttpUtil httpUtil, IAssociationSettings settings)
         {
             _httpUtil = httpUtil;
+            _settings = settings;
         }
 
         public async Task<IEnumerable<Association>> GetAssociationsAsync(IEnumerable<string> words, int limitForEach)
@@ -37,7 +35,8 @@ namespace AssociationsService.Services
 
             try
             {
-                responseString = await _httpUtil.GetAsync(string.Format(ApiTemplate, ApiKey, word, limit));
+                responseString = await _httpUtil
+                    .GetAsync(string.Format(_settings.ApiTemplate, _settings.ApiKey, word, limit));
             }
             catch (Exception ex)
             {
