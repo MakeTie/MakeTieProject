@@ -62,6 +62,10 @@ namespace MakeTie.Web.Controllers
             {
                 return ReturnServiceUnavailableResult(ex);
             }
+            catch (EntityAnalysisServiceException ex)
+            {
+                return ReturnServiceUnavailableResult(ex);
+            }
 
             return Ok(products);
         }
