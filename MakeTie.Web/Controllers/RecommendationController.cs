@@ -24,6 +24,54 @@ namespace MakeTie.Web.Controllers
         private readonly IProductService _productService;
         private readonly ILogger _logger;
 
+        private List<AnalysisEntity> sampleEntities = new List<AnalysisEntity>()
+        {
+            new AnalysisEntity()
+            {
+                Language = "en",
+                Name = "car",
+                Salience = 1,
+                Type = "entity"
+            }
+        };
+
+        private List<Product> sampleProducts = new List<Product>()
+        {
+            new Product
+            {
+                ImageUrl = "url",
+                SourceUrl = "asdasd",
+                Store = new Store
+                {
+                    ImageUrl = "asdads",
+                    Name = "Name 1"
+                },
+                Title = "Product 1",
+                Price = new Price
+                {
+                    Value = Decimal.One,
+                    Currency = "USD"
+                }
+            },
+            new Product
+            {
+                ImageUrl = "url2",
+                SourceUrl = "asdasd",
+                Store = new Store
+                {
+                    ImageUrl = "asdads",
+                    Name = "Name 2"
+                },
+                Title = "Product 2",
+                Price = new Price
+                {
+                    Value = Decimal.Zero,
+                    Currency = "USD"
+                }
+            },
+        };
+
+
         public RecommendationController(
             IEntityAnalysisService entityAnalysisService,
             IAssociationService associationService,
