@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Google.Cloud.Language.V1;
+using MakeTie.Bll.Entities.EntityAnalysis;
 using MakeTie.Bll.Entities.Product;
 using MakeTie.Bll.Exceptions;
 using MakeTie.Bll.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
 namespace MakeTie.Web.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors("AllowAllHeaders")]
     public class RecommendationController : Controller
     {
         private const int MaxEntitiesCount = 3;

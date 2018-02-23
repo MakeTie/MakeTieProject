@@ -35,6 +35,16 @@ namespace MakeTie.Web
             Environment.SetEnvironmentVariable(environmentVariableName, googleCredentialsPath);
 
             services.AddMvc();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllHeaders",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
 
             RegisterDependencies(services);
         }
@@ -48,6 +58,8 @@ namespace MakeTie.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("AllowAllHeaders");
 
             app.UseMvc();
         }
