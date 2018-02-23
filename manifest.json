@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "MakeTie Extension",
+  "description": "",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "assets/icon.png",
+    "default_popup": "index.html",
+    "default_title": "MakeTie"
+  },
+  "permissions": [
+    "activeTab",
+    "*://*.google.com/*"
+  ]
+}
