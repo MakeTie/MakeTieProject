@@ -1,6 +1,8 @@
 export class RequestController {
-    constructor(queryInterceptor) {
+    constructor(queryInterceptor, productService, productsView) {
         this.queryInterceptor = queryInterceptor;
+        this.productService = productService;
+        this.productsView = productsView;
 
         this.setEventHandlers();
     }
@@ -8,7 +10,12 @@ export class RequestController {
     setEventHandlers() {
         document.addEventListener('DOMContentLoaded', () => {
             this.queryInterceptor.getQuery()
-                .then((query) => $("#output").text(query));
+                .then((query) => this.getAndDisplayProducts(query));
         });
+    }
+
+    getAndDisplayProducts(query) {
+        return this.productService.getProducts(query)
+            .then(products => this.productsView.renderProducts(products));
     }
 }

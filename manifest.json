@@ -12,6 +12,7 @@
   },
   "permissions": [
     "activeTab",
-    "*://*.google.com/*"
+    "*://*.google.com/*",
+    "http://localhost:61809/*"
   ]
 }

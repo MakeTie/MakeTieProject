@@ -1,0 +1,9 @@
+	{{#products}}
+	<div>
+		<span>{{title}}</span>
+        <span>{{price.value}} {{price.currency}}</span>
+        <span>{{sourceUrl}}</span>
+        <img src="{{imageUrl}}" />
+	</div>
+	{{/products}}
+    
