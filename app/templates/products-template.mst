@@ -1,9 +1,16 @@
-	{{#products}}
-	<div>
-		<span>{{title}}</span>
-        <span>{{price.value}} {{price.currency}}</span>
-        <span>{{sourceUrl}}</span>
-        <img src="{{imageUrl}}" />
-	</div>
-	{{/products}}
-    
+{{#products}}
+		<div class="product-item row">
+			<div class="pi-img-wrapper col-xs-4">
+				<img src="{{imageUrl}}" class="img-responsive" alt="{{title}}">
+			</div>
+			<div class="text-block clo-xs-8">
+				<h3>
+					<a href="{{sourceUrl}}">{{title}}</a>
+				</h3>
+				<div class="pi-price">$ {{price.value}} {{price.currency}}</div>
+				<a href="javascript:;" class="btn add2cart">
+					<img src="{{store.imageUrl}}" class="store-img">
+				</a>
+			</div>
+		</div>         
+{{/products}}

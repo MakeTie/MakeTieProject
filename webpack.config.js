@@ -26,6 +26,13 @@ module.exports = {
     module: {
         loaders: [
             {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+            {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 query: {
@@ -33,7 +40,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.(mst)$/,
+                test: /\.(mst|ttf|woff2|woff|eot|svg)$/,
                 use: [
                     'file-loader'
                 ]
