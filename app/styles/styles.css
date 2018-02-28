@@ -1,12 +1,11 @@
 body {
     background: #f1f1f1;
-    width: 600px;
+    width: 400px;
   }
 
   .product-item {
-    padding: 15px;
     background: #fff;
-    margin-top: 20px;
+    margin-top: 5px;
     position: relative;
   }
 
@@ -40,6 +39,7 @@ body {
 
   .pi-img-wrapper {
     position: relative;
+    padding-left: 0;
   }
 
   .pi-img-wrapper div {
@@ -98,6 +98,7 @@ body {
     border: 1px #ededed solid;
     padding: 3px 6px;
     text-transform: uppercase;
+    margin-right: 5px;
   }
 
   .product-item .add2cart:hover {
@@ -106,4 +107,8 @@ body {
 
   .product-item .store-img {
     height: 20px;
+  }
+
+  #header-alert {
+    margin-bottom: 0;
   }

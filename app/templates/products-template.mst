@@ -1,6 +1,6 @@
 {{#products}}
 		<div class="product-item row">
-			<div class="pi-img-wrapper col-xs-4">
+			<div class="pi-img-wrapper col-xs-3">
 				<img src="{{imageUrl}}" class="img-responsive" alt="{{title}}">
 			</div>
 			<div class="text-block clo-xs-8">

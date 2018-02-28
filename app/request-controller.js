@@ -10,12 +10,20 @@ export class RequestController {
     setEventHandlers() {
         document.addEventListener('DOMContentLoaded', () => {
             this.queryInterceptor.getQuery()
-                .then((query) => this.getAndDisplayProducts(query));
+                .then((query) => {
+                    this.displayQuery(query);
+                    this.getAndDisplayProducts(query);
+                });
         });
     }
 
     getAndDisplayProducts(query) {
         return this.productService.getProducts(query)
             .then(products => this.productsView.renderProducts(products));
+    }
+
+    displayQuery(query) {
+        let output = $("#output");
+        output.text(query);
     }
 }
