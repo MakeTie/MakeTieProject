@@ -5,8 +5,22 @@
 </head>
 
 <body>
-  <div id="header-alert" class="alert alert-warning" role="alert"><strong>You searched for: </strong><span id="output"></span></div>
+  <div id="header-alert" class="alert alert-warning" role="alert">
+    <strong>You searched for: </strong>
+    <span id="output" bind="querylabel"></span>
+  </div>
   <div bind="products" class="container"></div>
+  <div class="container" bind="loader">
+    <div class="row">
+      <div class="center-block col-md-4" id="loading">
+        <ul class="bokeh">
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

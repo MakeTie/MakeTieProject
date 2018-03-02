@@ -1,19 +1,21 @@
+/* Product element styles */
+
 body {
     background: #f1f1f1;
     width: 400px;
-  }
+}
 
-  .product-item {
+.product-item {
     background: #fff;
     margin-top: 5px;
     position: relative;
-  }
+}
 
-  .product-item:hover {
+.product-item:hover {
     box-shadow: 5px 5px rgba(234, 234, 234, 0.9);
-  }
+}
 
-  .product-item:after {
+.product-item:after {
     content: ".";
     display: block;
     height: 0;
@@ -21,28 +23,28 @@ body {
     visibility: hidden;
     font-size: 0;
     line-height: 0;
-  }
+}
 
-  .sticker {
+.sticker {
     position: absolute;
     top: 0;
     left: 0;
     width: 63px;
     height: 63px;
-  }
+}
 
-  .sticker-new {
+.sticker-new {
     background: url(http://keenthemes.com/assets/bootsnipp/new.png) no-repeat;
     left: auto;
     right: 0;
-  }
+}
 
-  .pi-img-wrapper {
+.pi-img-wrapper {
     position: relative;
     padding-left: 0;
-  }
+}
 
-  .pi-img-wrapper div {
+.pi-img-wrapper div {
     background: rgba(0, 0, 0, 0.3);
     position: absolute;
     left: 0;
@@ -51,13 +53,13 @@ body {
     width: 100%;
     height: 100%;
     text-align: center;
-  }
+}
 
-  .product-item:hover>.pi-img-wrapper>div {
+.product-item:hover>.pi-img-wrapper>div {
     display: block;
-  }
+}
 
-  .pi-img-wrapper div .btn {
+.pi-img-wrapper div .btn {
     padding: 3px 10px;
     color: #fff;
     border: 1px #fff solid;
@@ -68,47 +70,152 @@ body {
     top: 50%;
     line-height: 1.4;
     font-size: 12px;
-  }
+}
 
-  .product-item h3 {
+.product-item h3 {
     font-size: 14px;
     font-weight: 300;
     padding-bottom: 4px;
     text-transform: uppercase;
-  }
+}
 
-  .product-item h3 a {
+.product-item h3 a {
     color: #3e4d5c;
-  }
+}
 
-  .product-item h3 a:hover {
+.product-item h3 a:hover {
     color: #E02222;
-  }
+}
 
-  .pi-price {
+.pi-price {
     color: #e84d1c;
     font-size: 18px;
     float: left;
     padding-top: 1px;
-  }
+}
 
-  .product-item .add2cart {
+.product-item .add2cart {
     float: right;
     color: #a8aeb3;
     border: 1px #ededed solid;
     padding: 3px 6px;
     text-transform: uppercase;
     margin-right: 5px;
-  }
+}
 
-  .product-item .add2cart:hover {
+.product-item .add2cart:hover {
     color: #fff;
-  }
+}
 
-  .product-item .store-img {
+.product-item .store-img {
     height: 20px;
-  }
+}
 
-  #header-alert {
+#header-alert {
     margin-bottom: 0;
-  }
+}
+
+
+/* Loader styles */
+
+#loading {
+    background: rgba(241, 241, 241, 0.1) repeat scroll 0 0;
+    margin: 5%;
+}
+
+.bokeh {
+    border: 0.01em solid rgba(150, 150, 150, 0.1);
+    border-radius: 50%;
+    font-size: 100px;
+    height: 1em;
+    list-style: outside none none;
+    margin: 0 auto;
+    position: relative;
+    top: 35%;
+    width: 1em;
+    z-index: 2147483647;
+}
+
+.bokeh li {
+    border-radius: 50%;
+    height: 0.2em;
+    position: absolute;
+    width: 0.2em;
+}
+
+.bokeh li:nth-child(1) {
+    animation: 1.13s linear 0s normal none infinite running rota, 3.67s ease-in-out 0s alternate none infinite running opa;
+    background: #00c176 none repeat scroll 0 0;
+    left: 50%;
+    margin: 0 0 0 -0.1em;
+    top: 0;
+    transform-origin: 50% 250% 0;
+}
+
+.bokeh li:nth-child(2) {
+    animation: 1.86s linear 0s normal none infinite running rota, 4.29s ease-in-out 0s alternate none infinite running opa;
+    background: #ff003c none repeat scroll 0 0;
+    margin: -0.1em 0 0;
+    right: 0;
+    top: 50%;
+    transform-origin: -150% 50% 0;
+}
+
+.bokeh li:nth-child(3) {
+    animation: 1.45s linear 0s normal none infinite running rota, 5.12s ease-in-out 0s alternate none infinite running opa;
+    background: #fac928 none repeat scroll 0 0;
+    bottom: 0;
+    left: 50%;
+    margin: 0 0 0 -0.1em;
+    transform-origin: 50% -150% 0;
+}
+
+.bokeh li:nth-child(4) {
+    animation: 1.72s linear 0s normal none infinite running rota, 5.25s ease-in-out 0s alternate none infinite running opa;
+    background: #88c100 none repeat scroll 0 0;
+    margin: -0.1em 0 0;
+    top: 50%;
+    transform-origin: 250% 50% 0;
+}
+
+@keyframes opa {
+    12% {
+        opacity: 0.8;
+    }
+    19.5% {
+        opacity: 0.88;
+    }
+    37.2% {
+        opacity: 0.64;
+    }
+    40.5% {
+        opacity: 0.52;
+    }
+    52.7% {
+        opacity: 0.69;
+    }
+    60.2% {
+        opacity: 0.6;
+    }
+    66.6% {
+        opacity: 0.52;
+    }
+    70% {
+        opacity: 0.63;
+    }
+    79.9% {
+        opacity: 0.6;
+    }
+    84.2% {
+        opacity: 0.75;
+    }
+    91% {
+        opacity: 0.87;
+    }
+}
+
+@keyframes rota {
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -11,7 +11,8 @@ export class RequestController {
         document.addEventListener('DOMContentLoaded', () => {
             this.queryInterceptor.getQuery()
                 .then((query) => {
-                    this.displayQuery(query);
+                    this.productsView.displayQuery(query);
+                    this.productsView.showLoader();
                     this.getAndDisplayProducts(query);
                 });
         });
@@ -19,7 +20,10 @@ export class RequestController {
 
     getAndDisplayProducts(query) {
         return this.productService.getProducts(query)
-            .then(products => this.productsView.renderProducts(products));
+            .then(products => {
+                this.productsView.hideLoader();
+                this.productsView.renderProducts(products);
+            });
     }
 
     displayQuery(query) {

@@ -4,6 +4,8 @@ var productsTemplate = require('./templates/products-template.mst');
 export class ProductsView {
     constructor() {
         this.productsBlock = $('div[bind=products]')[0];
+        this.loader = $("div[bind=loader]");
+        this.queryLabel = $("span[bind=querylabel]"); 
     }
 
     renderProducts(products){
@@ -14,5 +16,13 @@ export class ProductsView {
           var rendered = Mustache.render(template, { products });
           that.productsBlock.innerHTML = rendered;
         });
+    }
+
+    showLoader(){
+        this.loader.show();
+    }
+
+    hideLoader(){
+        this.loader.css("display", "none");
     }
 }
