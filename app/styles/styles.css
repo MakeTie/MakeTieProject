@@ -219,3 +219,40 @@ body {
         transform: rotate(360deg);
     }
 }
+
+/* Erorr styles */
+
+.error-block {
+    height: 100%;
+    width: 100%;
+    line-height: 5px;
+    display: none;
+}
+
+.gear {
+    text-align: center;
+    color: #e1b7b7;
+}
+
+.error-message {
+    text-align: center;
+    color: #df726a;
+}
+
+.lower-case {
+    text-align: center;
+}
+
+/* Go to google styles */
+
+.use-google-block {
+    height: 100%;
+    width: 100%;
+    line-height: 5px;
+    display: none;
+}
+
+.google-page-message {
+    text-align: center;
+    color: #df726a;
+}

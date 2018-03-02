@@ -11,9 +11,14 @@ export class RequestController {
         document.addEventListener('DOMContentLoaded', () => {
             this.queryInterceptor.getQuery()
                 .then((query) => {
-                    this.productsView.displayQuery(query);
-                    this.productsView.showLoader();
-                    this.getAndDisplayProducts(query);
+                    if (query[0] != null) {
+                        this.productsView.displayQuery(query);
+                        this.productsView.showLoader();
+                        this.getAndDisplayProducts(query);
+                    }
+                    else {
+                        this.productsView.displayGooglePageMessage();
+                    }
                 });
         });
     }
@@ -23,6 +28,9 @@ export class RequestController {
             .then(products => {
                 this.productsView.hideLoader();
                 this.productsView.renderProducts(products);
+            })
+            .catch(error => {
+                this.productsView.displayErrorMessage();
             });
     }
 }
