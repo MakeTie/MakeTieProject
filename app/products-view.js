@@ -25,4 +25,8 @@ export class ProductsView {
     hideLoader(){
         this.loader.css("display", "none");
     }
+
+    displayQuery(query) {
+        this.queryLabel.text(query);
+    }
 }

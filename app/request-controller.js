@@ -25,9 +25,4 @@ export class RequestController {
                 this.productsView.renderProducts(products);
             });
     }
-
-    displayQuery(query) {
-        let output = $("#output");
-        output.text(query);
-    }
 }
