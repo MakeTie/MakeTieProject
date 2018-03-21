@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Google.Cloud.Language.V1;
 using MakeTie.Bll.Entities.EntityAnalysis;
 using MakeTie.Bll.Entities.Product;
 using MakeTie.Bll.Exceptions;
@@ -18,13 +17,10 @@ namespace MakeTie.Web.Controllers
     [EnableCors("AllowAllHeaders")]
     public class RecommendationController : Controller
     {
-        private const int MaxEntitiesCount = 3;
-        private readonly IEntityAnalysisService _entityAnalysisService;
-        private readonly IAssociationService _associationService;
-        private readonly IProductService _productService;
         private readonly ILogger _logger;
+        private readonly IRecommendationService _recommendationService;
 
-        private List<AnalysisEntity> sampleEntities = new List<AnalysisEntity>()
+        private List<AnalysisEntity> _sampleEntities = new List<AnalysisEntity>()
         {
             new AnalysisEntity()
             {
@@ -35,18 +31,18 @@ namespace MakeTie.Web.Controllers
             }
         };
 
-        private List<Product> sampleProducts = new List<Product>()
+        private List<Product> _sampleProducts = new List<Product>()
         {
             new Product
             {
-                ImageUrl = "url",
-                SourceUrl = "asdasd",
+                ImageUrl = "http://ottstone.com/wp-content/uploads/2017/06/5550-a65ab931a7b6f60aa78db8a0e5e9e99f-600x600.jpg",
+                SourceUrl = "http://ottstone.com/wp-content/uploads/2017/06/5550-a65ab931a7b6f60aa78db8a0e5e9e99f-600x600.jpg",
                 Store = new Store
                 {
-                    ImageUrl = "asdads",
-                    Name = "Name 1"
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/EBay_logo.svg/1000px-EBay_logo.svg.png",
+                    Name = "ebay"
                 },
-                Title = "Product 1",
+                Title = "Blue coat for you",
                 Price = new Price
                 {
                     Value = Decimal.One,
@@ -55,56 +51,36 @@ namespace MakeTie.Web.Controllers
             },
             new Product
             {
-                ImageUrl = "url2",
-                SourceUrl = "asdasd",
+                ImageUrl = "http://ottstone.com/wp-content/uploads/2017/06/5550-a65ab931a7b6f60aa78db8a0e5e9e99f-600x600.jpg",
+                SourceUrl = "http://ottstone.com/wp-content/uploads/2017/06/5550-a65ab931a7b6f60aa78db8a0e5e9e99f-600x600.jpg",
                 Store = new Store
                 {
-                    ImageUrl = "asdads",
-                    Name = "Name 2"
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/EBay_logo.svg/1000px-EBay_logo.svg.png",
+                    Name = "ebay"
                 },
-                Title = "Product 2",
+                Title = "Blue coat for you",
                 Price = new Price
                 {
-                    Value = Decimal.Zero,
+                    Value = Decimal.One,
                     Currency = "USD"
                 }
             },
         };
 
-
-        public RecommendationController(
-            IEntityAnalysisService entityAnalysisService,
-            IAssociationService associationService,
-            IProductService productService,
-            ILogger logger)
+        public RecommendationController(ILogger logger, IRecommendationService recommendationService)
         {
-            _entityAnalysisService = entityAnalysisService;
-            _associationService = associationService;
-            _productService = productService;
             _logger = logger;
+            _recommendationService = recommendationService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get(string query)
         {
-            var products = new List<Product>();
             try
             {
-                var entities = await _entityAnalysisService.GetEntitiesAsync(query, MaxEntitiesCount);
-                var stringEntities = entities.Select(entity => entity.Name);
-                var associations = await _associationService.GetAssociationsAsync(stringEntities, MaxEntitiesCount);
-                
+                //var products = (await _recommendationService.GetRecommendationsAsync(query)).ToList();
 
-                foreach (var association in associations)
-                {
-                    foreach (var item in association.Items)
-                    {
-                        products.AddRange(_productService.SearchProducts(item.Item)
-                            .Where(product => product.ImageUrl != null)
-                            .Take(3)
-                            .ToList());
-                    }
-                }
+                return Ok(_sampleProducts);
             }
             catch (AssociationServiceException ex)
             {
@@ -118,8 +94,6 @@ namespace MakeTie.Web.Controllers
             {
                 return ReturnServiceUnavailableResult(ex);
             }
-
-            return Ok(products);
         }
 
         private IActionResult ReturnServiceUnavailableResult(Exception ex)

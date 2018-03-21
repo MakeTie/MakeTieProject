@@ -90,6 +90,7 @@ namespace MakeTie.Web
             services.AddTransient<IAssociationService, AssociationsService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IEntityAnalysisService, EntityAnalysisService>();
+            services.AddTransient<IRecommendationService, RecommendationService>();
             services.AddSingleton(LanguageServiceClient.Create());
         }
 
