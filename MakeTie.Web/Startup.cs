@@ -30,9 +30,9 @@ namespace MakeTie.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var environmentVariableName = Configuration["EntityAnalysisSettings:EnvironmentVariableName"];
-            var googleCredentialsPath = Configuration["EntityAnalysisSettings:GoogleCredentialsPath"];
-            Environment.SetEnvironmentVariable(environmentVariableName, googleCredentialsPath);
+            //var environmentVariableName = Configuration["EntityAnalysisSettings:EnvironmentVariableName"];
+            //var googleCredentialsPath = Configuration["EntityAnalysisSettings:GoogleCredentialsPath"];
+            //Environment.SetEnvironmentVariable(environmentVariableName, googleCredentialsPath);
 
             services.AddMvc();
             services.AddCors(options =>
