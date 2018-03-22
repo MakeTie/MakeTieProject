@@ -27,10 +27,4 @@
     <ProjectReference Include="..\MakeTie.Bll\MakeTie.Bll.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="Resources\My Project-d9133dc07dc4.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>
